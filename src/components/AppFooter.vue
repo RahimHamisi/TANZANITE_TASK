@@ -27,7 +27,7 @@
           <a href="#" class="footer-link mr-4">Wasiliana Nasi</a>
         </div>
         <span class="copyright">
-          © {{ new Date().getFullYear() }}. Haki zote zimehifadhiwa.
+          © 2022 -{{ new Date().getFullYear() }}. Haki zote zimehifadhiwa.
         </span>
       </v-col>
     </v-row>
