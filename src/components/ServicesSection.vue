@@ -7,13 +7,7 @@
     </v-row>
 
     <v-row>
-      <v-col
-        cols="12"
-        sm="6"
-        md="4"
-        v-for="(service, index) in services"
-        :key="index"
-      >
+      <v-col cols="12" sm="6" md="4" v-for="(service, index) in services" :key="index">
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-animateonscroll="{ animation: 'fadeInUp', delay: index * 100 }"
@@ -37,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 const services = ref([
   'Maendeleo Binafsi',
@@ -46,7 +40,7 @@ const services = ref([
   'Maendeleo ya Biashara',
   'Maendeleo ya Teknolojia',
   'Huduma za Ushauri',
-]);
+])
 
 const icons = ref([
   'mdi-account-star',
@@ -55,14 +49,14 @@ const icons = ref([
   'mdi-storefront-outline',
   'mdi-laptop',
   'mdi-head-lightbulb',
-]);
+])
 </script>
 
 <style scoped>
 .section-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #35898C;
+  color: #35898c;
   margin-bottom: 2rem;
 }
 
@@ -71,6 +65,10 @@ const icons = ref([
   background-color: #fff;
   transition: 0.3s ease;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .service-card--hover {
@@ -80,7 +78,7 @@ const icons = ref([
 
 .service-title {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #333;
 }
 
@@ -90,5 +88,24 @@ const icons = ref([
 
 .service-card--hover .icon {
   transform: scale(1.2);
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 36px !important;
+  }
 }
 </style>

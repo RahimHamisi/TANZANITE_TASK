@@ -2,7 +2,7 @@
   <v-app>
     <AppHeader />
 
-    <v-main>
+    <v-main style="margin-top: 0; padding-top: 0;">
       <HeroSection />
       <ServicesSection />
       <JoinSection />

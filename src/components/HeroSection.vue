@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="hero-section py-16" >
+  <v-container fluid class="hero-section py-15" >
     <v-row align="center" justify="center" class="flex-nowrap flex-column flex-md-row">
       
       <v-col
@@ -19,7 +19,7 @@
       >
         <h1 class="hero-title mb-4">Tanzanite Skills Academy</h1>
         <h2 class="hero-subtitle mb-6">Jifunze Leo, Badilisha Kesho Yako</h2>
-        <v-btn color="secondary" x-large rounded href="#join">Jisajili Sasa</v-btn>
+       
       </v-col>
 
     </v-row>
@@ -34,7 +34,7 @@
 .hero-section {
   background: linear-gradient(to right, #35898C, #2c3e50);
   color: white;
-  min-height: 300px;
+  min-height: 20px;
 }
 
 .hero-title {

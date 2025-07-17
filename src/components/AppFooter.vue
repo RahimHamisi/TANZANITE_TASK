@@ -19,7 +19,6 @@
             <a href="tel:+255 749 722 722" class="footer-link">+255 749 722 722</a>
           </p>
         </v-col>
-
       </v-row>
     </v-container>
     <v-row no-gutters class="footer-bottom">
@@ -41,22 +40,6 @@
   font-family: 'Roboto', sans-serif;
   position: relative;
   overflow: hidden;
-}
-
-.footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path d="M0,60 C240,0 720,0 1440,60 L1440,0 L0,0 Z" fill="%231A2A44"/></svg>') repeat-x;
-  animation: wave 5s infinite linear;
-}
-
-@keyframes wave {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-1440px); }
 }
 
 .footer-col {
