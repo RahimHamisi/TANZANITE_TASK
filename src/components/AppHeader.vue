@@ -1,48 +1,104 @@
 <template>
   <v-app-bar app color="primary" dark elevate-on-scroll flat>
     <v-app-bar-nav-icon @click="drawer = !drawer" class="d-md-none" />
+
     <v-toolbar-title class="custom-title">
       <div class="title-text">
         <h2>Tanzanite Skills</h2>
         <h5>Academy</h5>
       </div>
     </v-toolbar-title>
+
     <v-spacer />
+
+   
     <v-toolbar-items class="d-none d-md-flex">
-      <v-btn v-for="item in menuItems" :key="item.title" variant="text" :href="item.path">
-        {{ item.title }}
-      </v-btn>
+      <v-btn
+        variant="text"
+        href="#services"
+        :class="{ 'active-link': activeSection === '#services' }"
+        @click.prevent="goToSection('#services')"
+      >Huduma</v-btn>
+
+      <v-btn
+        variant="text"
+        href="#join"
+        :class="{ 'active-link': activeSection === '#join' }"
+        @click.prevent="goToSection('#join')"
+      >Mawasiliano</v-btn>
+
+      <AuthDialog />
     </v-toolbar-items>
   </v-app-bar>
 
-  <v-navigation-drawer v-model="drawer" temporary app location="left" class="d-md-none">
-    <v-list>
-      <v-list-item v-for="item in menuItems" :key="item.title" @click="goToSection(item.path)">
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
-      </v-list-item>
-    </v-list>
+
+  <v-navigation-drawer
+    v-model="drawer"
+    temporary
+    app
+    location="left"
+    class="d-md-none custom-drawer"
+  >
+    <transition name="fade-slide">
+      <v-list v-if="drawer">
+        <v-list-item
+          :class="{ 'v-list-item--active': activeSection === '#services' }"
+          @click="goToSection('#services')"
+        >
+          <v-list-item-title>Huduma</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item
+          :class="{ 'v-list-item--active': activeSection === '#join' }"
+          @click="goToSection('#join')"
+        >
+          <v-list-item-title>Mawasiliano</v-list-item-title>
+        </v-list-item>
+
+        <v-list-item>
+          <AuthDialog />
+        </v-list-item>
+      </v-list>
+    </transition>
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import AuthDialog from './AuthDialog.vue'
 
 const drawer = ref(false)
-
-const menuItems = [
-  { title: 'Huduma', path: '#services' },
-  { title: 'Kuhusu', path: '#courses' },
-  { title: 'Mawasiliano', path: '#join' },
-  { title: 'Jisajili', path: '#register' },
-]
+const activeSection = ref(null)
 
 const goToSection = (anchor) => {
   drawer.value = false
   const el = document.querySelector(anchor)
   if (el) {
     el.scrollIntoView({ behavior: 'smooth' })
+    activeSection.value = anchor
   }
 }
+
+const handleScroll = () => {
+  const sections = ['#services', '#join']
+  let current = null
+  for (const sec of sections) {
+    const el = document.querySelector(sec)
+    if (el) {
+      const top = el.getBoundingClientRect().top
+      if (top <= 100) current = sec
+    }
+  }
+  if (current) activeSection.value = current
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>
@@ -78,8 +134,48 @@ const goToSection = (anchor) => {
   color: #ccc;
 }
 
-.v-list-item-title {
-  font-size: 1rem;
-  font-weight: 500;
+.custom-drawer {
+  background-color: #1e293b;
+  color: #e0e7ff;
+  padding-top: 1rem;
+}
+
+.custom-drawer .v-list-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-drawer .v-list-item:hover {
+  background-color: #334155;
+}
+
+.custom-drawer .v-list-item.v-list-item--active {
+  background-color: #000000; 
+  color: white;
+  font-weight: 600;
+}
+
+
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.fade-slide-enter-to,
+.fade-slide-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.active-link {
+  color: #000000; 
+  font-weight: 700;
+  border-bottom: 2px solid #000000; 
 }
 </style>
