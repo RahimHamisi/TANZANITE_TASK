@@ -26,10 +26,10 @@
   </v-dialog>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import LoginForm from './LoginForm.vue'
-import RegistrationForm from './RegistrationForm.vue'
+import LoginForm from '@/components/LoginForm.vue'
+import RegistrationForm from '@/components/RegistrationForm.vue'
 
 const dialog = ref(false)
 const activeTab = ref('login')

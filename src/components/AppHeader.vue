@@ -62,15 +62,14 @@
     </transition>
   </v-navigation-drawer>
 </template>
-
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import AuthDialog from './AuthDialog.vue'
+import AuthDialog from '@/components/AuthDialog.vue'
 
 const drawer = ref(false)
-const activeSection = ref(null)
+const activeSection = ref<string | null>(null)
 
-const goToSection = (anchor) => {
+const goToSection = (anchor: string) => {
   drawer.value = false
   const el = document.querySelector(anchor)
   if (el) {
@@ -81,7 +80,7 @@ const goToSection = (anchor) => {
 
 const handleScroll = () => {
   const sections = ['#services', '#join']
-  let current = null
+  let current: string | null = null
   for (const sec of sections) {
     const el = document.querySelector(sec)
     if (el) {
@@ -89,7 +88,7 @@ const handleScroll = () => {
       if (top <= 100) current = sec
     }
   }
-  if (current) activeSection.value = current
+  activeSection.value = current
 }
 
 onMounted(() => {
@@ -100,7 +99,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 </script>
-
 <style scoped>
 .custom-title {
   display: flex;
