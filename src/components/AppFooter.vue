@@ -12,9 +12,9 @@
           </p>
         </v-col>
         <v-col cols="12" sm="6" md="3" class="footer-col">
-          <h3 class="footer-title mb-4">FIKIRA TIMU YETU</h3>
+          <h3 class="footer-title mb-4">FIKIA TIMU YETU</h3>
           <p class="footer-text mb-2">
-            Fikra timu yetu ya msada wakati wowote - tunapatikana saa 24 kila siku.<br>
+            Fikia timu yetu ya msada wakati wowote - tunapatikana saa 24 kila siku.<br>
             <a href="tel:+255 749 722 722" class="footer-link">+255 749 722 722</a><br>
             <a href="tel:+255 749 722 722" class="footer-link">+255 749 722 722</a>
           </p>
@@ -27,7 +27,7 @@
           <a href="#" class="footer-link mr-4">Wasiliana Nasi</a>
         </div>
         <span class="copyright">
-          © 2014 - {{ new Date().getFullYear() }}. Haki zote zimehifadhiwa.
+          © {{ new Date().getFullYear() }}. Haki zote zimehifadhiwa.
         </span>
       </v-col>
     </v-row>
